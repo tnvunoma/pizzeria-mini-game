@@ -1,0 +1,30 @@
+Overview
+
+This is a game based on Papa's pizzeria. It features 4 tabs that you can switch between: Cashier, Assembly, Baking,
+and Slicing. In the Cashier tab you can view customers and their orders. In the Assembly tab, you can create a new pizza
+and decorate it with 2 types of sauces, cheese, and 8 toppings. The 7 original papa's pizzeria game's toppings
+are present and pineapple was a new personal addition. While on this tab, you can add and select toppings to
+move them around or delete them. These actions can be undone and redone. The sauces can be be drawn onto the pizza using
+mouse drag, but can only be deleted with the clear button, since it is not a topping and cannot be selected to be
+deleted. The clear button will delete ALL toppings and sauces on the pizza. This action cannot be undone.
+
+When you finish decorating the pizza, you can transfer the pizza onto the Baking tab by adding it to an oven. Once in
+the oven, the pizza can be baked and then burnt. You can click on the pizza to take it out of the oven after it has been
+added. There are four ovens, and pizzas can be added to them in any order. If you have multiple pizzas baking, the order
+in which you take them out of the oven will determine the order they will be sliced in the Slicing tab.
+
+To slice the pizza, you must click around the pizza within its tray. Each press will create one slice. After you finish
+slicing, the pizza will appear in a pizza inventory in the Cashier tab. You can then select the pizza and either delete
+it or serve it to a customer by pressing on the customer after the pizza is selected. The customer will give you a score
+based on how accurate it is to their order. Deductions to your score will be made if you add extra toppings or
+burn/under-bake the pizza. After scoring, the customer will give you a tip based on their satisfaction, and leave and be
+replaced by the next customer. Customers that spawn will have a timer that indicates how long they will wait. Once
+the timer runs out, they will leave and give a score of 0.
+
+As you progress in the game, your performance will affect the game difficulty. The difficulty will increase or decrease
+based on the last score you receive. Increasing the difficulty means more chances of spawning special customers with
+either a nice, mean, or eccentric personality. Nice customers will wait longer and give bigger tips, mean customers
+will order more, wait less, and give small tips, while eccentric customers will order more, wait longer, and give big
+tips,
+
+Design
