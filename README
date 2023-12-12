@@ -1,5 +1,4 @@
 Overview
-
 This is a game based on Papa's pizzeria. It features 4 tabs that you can switch between: Cashier, Assembly, Baking,
 and Slicing. In the Cashier tab you can view customers and their orders. In the Assembly tab, you can create a new pizza
 and decorate it with 2 types of sauces, cheese, and 8 toppings. The 7 original papa's pizzeria game's toppings
@@ -21,10 +20,65 @@ burn/under-bake the pizza. After scoring, the customer will give you a tip based
 replaced by the next customer. Customers that spawn will have a timer that indicates how long they will wait. Once
 the timer runs out, they will leave and give a score of 0.
 
-As you progress in the game, your performance will affect the game difficulty. The difficulty will increase or decrease
-based on the last score you receive. Increasing the difficulty means more chances of spawning special customers with
-either a nice, mean, or eccentric personality. Nice customers will wait longer and give bigger tips, mean customers
+As you progress through the game, your performance will affect the game difficulty. The difficulty will increase or
+decrease based on the last score you receive. Increasing the difficulty means more chances of spawning special customers
+with either a nice, mean, or eccentric personality. Nice customers will wait longer and give bigger tips, mean customers
 will order more, wait less, and give small tips, while eccentric customers will order more, wait longer, and give big
-tips,
+tips. These special customers have a 0% chance of spawning at the beginning and can only be accessed once you get to
+higher difficulty levels.
+
+For bells and whistles, I mentioned adding one extra topping (pineapple). The pizzas can also be deleted from the
+pizza inventory, and the inventory also updates the position of each pizza once they are deleted or served.
+Additionally, all the visual graphics were drawn by me.
 
 Design
+The PizzaOrganizer is an important class that manages all the queues needed to keep the pizzas in order. This class is
+passed into all classes that deals with the pizza because it needs access to any changes made to the pizza, so that it
+can "save" and "load" those pizzas into the all tabs. It does this by preserving the pizzas in queues. There are
+separate queues for each component of the pizza (queues for sauce is separate from queues for toppings, instead of
+having one big queue that contains all sauces and toppings). Pizzas can be reconstructed in the correct layering
+(toppings on top of cheese on top of sauce on top of dough) only by dequeuing the queues in the correct order that the
+elements will appear in the pane. I chose to do it this way because all the queues can only handle one type of class
+(type Cheese and type Sauce cannot be contained in the same queue unless they both implement or inherit the same
+interface/superclass). The queues of arraylists doesn't compromise on flexibility because users can choose not to add
+sauce or toppings or even any slices, and the queues will still be in order. For example if you choose to not slice the
+pizza, an empty arraylist of slices will be added to the queue for the pizza inventory, and that empty arraylist will
+still be dequeued when the slices are reconstructed for that certain pizza.
+
+The recreateToppings method in PizzaOrganizer might be bad OOP design because it uses instanceOf to recreate the list
+of toppings that was added to the pizza. Even though all toppings implement the Topping interface, I felt that
+polymorphism was impossible to utilize in the reconstruction of toppings because each type of topping needs to be
+instantiated in a new class before you can use polymorphism on its methods, and you can't use polymorphism to
+instantiate a topping's actual type. (In other words, to recreate all the toppings added to the pizza in the Assembly
+class, you have to instantiate in the Baking, Slicing, and PizzaLog class.)
+
+The recreateSauces and recreateSlices methods manage to not utilize instanceOf because all Sauces are sauces and all
+Slices are slices, but not all Toppings are Pepperonis.
+
+More on toppings: I chose to use an interface because I originally wanted to create all the toppings using javafx
+shapes. This way, all toppings would have methods to translate and select, but have different ways of implementing
+that. This only ended up being useful for pepperoni (Ellipses), onion (Quad curves), and peppers (Quad curves).
+The rest of the toppings utilize images because of their more complex shapes, but I still kept the interface instead
+of using a subclass to vary the images because I still would want to use javafx shapes to create them if I had more time
+in the future. Currently, each topping image has a mouse offset in its translate method. This is just meant to
+calibrate the image to the mouse cursor so that the center of translation is in the center of the topping image and not
+the top left corner.
+
+The Cheese class is a special class because it doesn't implement the Topping interface. I viewed cheese as a togglable
+topping, so it just uses a boolean to determine if the pizza has cheese (true) or doesn't have cheese (false). In truth,
+the cheese is always there; it just has 0 opacity when hasCheese is false.
+
+To implement undo and redo, all actions that can be undone/redone implement the undoable interface. These actions
+include adding toppings, deleting toppings, moving toppings, adding cheese, and deleting cheese.
+
+Lastly, special customers are subclasses that inherit from the normal Customer class, with overrides to let them order
+tip and wait differently.
+
+Known bugs
+none
+
+Debugging collaborators
+none
+
+Hours
+120
