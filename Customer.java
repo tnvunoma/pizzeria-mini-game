@@ -250,7 +250,7 @@ public class Customer {
      * This method calculates and returns the tip that the customer would give based on their score.
      */
     public double giveTip(int score) {
-        return score * Constants.TIP_AMT;
+        return Math.round(score * Constants.TIP_AMT * 100.0) / 100.0;
     }
 
     /**
