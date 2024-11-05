@@ -162,6 +162,7 @@ public class Cashier {
         for (double tip : this.tip) {
             totalTip = totalTip + tip;
         }
+        totalTip = Math.round(totalTip * 100.0) / 100.0
         return totalTip;
     }
 
