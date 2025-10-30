@@ -27,8 +27,6 @@ will order more, wait less, and give small tips, while eccentric customers will 
 tips. These special customers have a 0% chance of spawning at the beginning and can only be accessed once you get to
 higher difficulty levels.
 
-For bells and whistles, I mentioned adding one extra topping (pineapple). The pizzas can also be deleted from the
-pizza inventory, and the inventory also updates the position of each pizza once they are deleted or served.
 Additionally, all the visual graphics were drawn by me.
 
 Design
@@ -75,9 +73,6 @@ Lastly, special customers are subclasses that inherit from the normal Customer c
 tip and wait differently.
 
 Known bugs
-none
-
-Debugging collaborators
 none
 
 Hours
